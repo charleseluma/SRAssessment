@@ -1,0 +1,21 @@
+---
+- hosts: production
+  become: yes
+  tasks:
+    - name: install nginx
+      yum:
+        name: nginx
+        state: latest
+    - name: start and enable nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+    - name: create index.html
+      file:
+        path: /usr/share/nginx/html/index.html
+        state: touch
+    - name: add a line to index.html
+      lineinfile:
+        path: /usr/share/nginx/html/index.html
+        line: "Hello SoftRam!"
