@@ -1,0 +1,11 @@
+version: '3'
+service:
+  dockerimage:
+    build:
+      context: .
+      args:
+        - VERSION=latest
+    ports:
+    - "8080:80"
+    environment:
+      - WEB_ENV=production
